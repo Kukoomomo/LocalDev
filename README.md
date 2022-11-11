@@ -1,8 +1,10 @@
 # LocalDev
-export SEQUENCER_CONTRACT_ADDRESS=0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0
-export SEQUENCER_L1_RPC=http://localhost:9545
 
 ```bash
+export SEQUENCER_CONTRACT_ADDRESS=0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0
+export SEQUENCER_L1_RPC=http://localhost:9545
+export USING_BVM=true
+
 geth --datadir data init genesis.json
 geth --datadir data
 
