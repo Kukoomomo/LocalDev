@@ -107,3 +107,5 @@ artifacts
 cache
 typechain-types
 logs
+localtest/dat*
+
