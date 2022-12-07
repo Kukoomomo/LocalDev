@@ -12,9 +12,17 @@ const prvKeys = [
   '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80',
   '0x59c6995e998f97a5a0044966f0945389dc9e86dae88c7a8412f4603b6b78690d',
   '0x5de4111afa1a4b94908f83103eb1f1706367c2e68ca870fc3fb9a804cdab365a',
-  '0x7c852118294e51e653712a81e05800f419141751be58f605c371e15141b007a6',
-  '0x47e179ec197488593b187f80a00eb0da91f1b9d0b13f8733639f19c30a34926a',
-  '0x8b3a350cf5c34c9194ca85829a2df0ec3153be0318b5e2d3348e872092edffba'
+  // '0x7c852118294e51e653712a81e05800f419141751be58f605c371e15141b007a6',
+  // '0x47e179ec197488593b187f80a00eb0da91f1b9d0b13f8733639f19c30a34926a',
+  // '0x8b3a350cf5c34c9194ca85829a2df0ec3153be0318b5e2d3348e872092edffba'
+]
+const nodeIDs = [
+  '0xa1095e2a5c49bf6248f6b304d2a143c747010eb975a0143bd6e6cc4982a4f122',
+  '0xa7fedb1bf4cf7159730fdcfb479674718a14e9176db1d7fdab23d030d7d8adcd',
+  '0xad53bc6d02a5d43d92c9fb0a5dd00fb48c411114bc2a3217d7da93c45e3de723',
+  // '0x7c852118294e51e653712a81e05800f419141751be58f605c371e15141b007a6',
+  // '0x47e179ec197488593b187f80a00eb0da91f1b9d0b13f8733639f19c30a34926a',
+  // '0x8b3a350cf5c34c9194ca85829a2df0ec3153be0318b5e2d3348e872092edffba'
 ]
 var wallets = new Array();
 
@@ -43,9 +51,9 @@ task("deploy")
     console.log("sequencer bit address :", await sequencer.bitToken())
 
     // create sequencer
-    for (var i = 0; i < wallets.length; i++) {
+    for (var i = 1; i < wallets.length; i++) {
       await token.connect(wallets[i]).approve(sequencer.address, deposit)
-      await sequencer.connect(wallets[i]).createSequencer(deposit, wallets[i].address, "0x")
+      await sequencer.connect(wallets[i]).createSequencer(deposit, wallets[i].address, nodeIDs[i])
     }
     await sequencer.updateSequencerLimit(100)
 
