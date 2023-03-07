@@ -25,14 +25,16 @@ func main() {
 		return
 	}
 	defer createSub.Unsubscribe()
-	createIter, err := sequencer.Session.Contract.FilterSequencerCreate(&bind.FilterOpts{Start: startNum, Context: ctx})
-	if err != nil {
-		fmt.Print("ERR:can not filter create event")
-		return
-	}
-	for createIter.Next() {
-		createCh <- createIter.Event
-	}
+	go func() {
+		createIter, err := sequencer.Session.Contract.FilterSequencerCreate(&bind.FilterOpts{Start: startNum, Context: ctx})
+		if err != nil {
+			fmt.Print("ERR:can not filter create event")
+			return
+		}
+		for createIter.Next() {
+			createCh <- createIter.Event
+		}
+	}()
 
 	deleteCh := make(chan *bindings.SequencerSequencerDelete, 4096)
 	deleteSub, err := sequencer.Session.Contract.WatchSequencerDelete(&bind.WatchOpts{Context: ctx}, deleteCh)
@@ -41,14 +43,17 @@ func main() {
 		return
 	}
 	defer deleteSub.Unsubscribe()
-	deleteIter, err := sequencer.Session.Contract.FilterSequencerDelete(&bind.FilterOpts{Start: startNum, Context: ctx})
-	if err != nil {
-		fmt.Print("ERR:can not filter create event")
-		return
-	}
-	for deleteIter.Next() {
-		deleteCh <- deleteIter.Event
-	}
+	go func() {
+		deleteIter, err := sequencer.Session.Contract.FilterSequencerDelete(&bind.FilterOpts{Start: startNum, Context: ctx})
+		if err != nil {
+			fmt.Print("ERR:can not filter create event")
+			return
+		}
+		for deleteIter.Next() {
+			deleteCh <- deleteIter.Event
+		}
+	}()
+
 	for {
 		select {
 		case ev := <-createCh:
