@@ -1,5 +1,6 @@
 import "@typechain/hardhat";
 import "hardhat-gas-reporter";
+import "hardhat-abi-exporter";
 import "solidity-coverage";
 import "@nomiclabs/hardhat-ethers"
 import "@openzeppelin/hardhat-upgrades"
@@ -11,6 +12,11 @@ module.exports = {
       apiKey: "[apiKey]",
       apiSecret: "[apiSecret]",
   },
+  abiExporter: {
+      path: './abi',
+      runOnCompile: true,
+      clear: true,
+  },
   networks: {
       hardhat: {
           allowUnlimitedContractSize: true,
@@ -20,6 +26,13 @@ module.exports = {
         chainId: 31337,
         gas: 'auto',
         gasPrice: 'auto',
+      },
+      l2: {
+          url: "http://localhost:8545",
+          chainId: 17,
+          gas: 'auto',
+          gasPrice: 'auto',
+          accounts :['ac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80'],
       }
   },
   solidity: {
@@ -46,10 +59,5 @@ module.exports = {
       tests: "./test",
       cache: "./cache",
       artifacts: "./artifacts"
-  },
-  abiExporter: {
-      path: './abi',
-      clear: true,
-      spacing: 4,
   }
 }

@@ -24,6 +24,7 @@
     "dotenv": "^16.0.1",
     "ethers": "^5.7.2",
     "hardhat": "^2.10.2",
+    "hardhat-abi-exporter": "^2.10.1",
     "hardhat-gas-reporter": "^1.0.8",
     "solidity-coverage": "^0.7.21",
     "ts-node": "^10.9.1",

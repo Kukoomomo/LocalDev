@@ -9,13 +9,13 @@ geth --datadir data1 init genesis.json
 geth --datadir data2 init genesis.json
 geth --datadir data3 init genesis.json
 
-geth --datadir data --password password.txt --unlock 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 --nodiscover --verbosity 4  --scheduler.address 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 --scheduler.batchepoch 10
+./bin/geth --datadir data --password password.txt --unlock 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 --nodiscover --rollup.role scheduler --verbosity 4 --scheduler.batchepoch 5
 
-geth --datadir data1 --rpcport 8085 --port 30306 --password password.txt --unlock 0x70997970c51812dc3a010c7d01b50e0d17dc79c8 --nodiscover --verbosity 4 --scheduler.address 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 --sequencer.mode=true
+geth --datadir data1 --rpcport 8085 --port 30306 --password password.txt --unlock 0x70997970c51812dc3a010c7d01b50e0d17dc79c8 --nodiscover --verbosity 4  --rollup.role sequencer
 
-geth --datadir data2 --rpcport 8086 --port 30307 --password password.txt --unlock 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc --nodiscover --verbosity 4 --scheduler.address 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 --sequencer.mode=true
+geth --datadir data2 --rpcport 8086 --port 30307 --password password.txt --unlock 0x3c44cdddb6a900fa2b585dd299e03d12fa4293bc --nodiscover --verbosity 4 --rollup.role sequencer
 
-geth --datadir data3 --rpcport 8087 --port 30308  --nodiscover --verbosity 4 --scheduler.address 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266 --sequencer.mode=true
+geth --datadir data3 --rpcport 8087 --port 30308  --nodiscover --verbosity 4 --sequencer.mode=true
 
 # new
 geth attach data/geth.ipc 
