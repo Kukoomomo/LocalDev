@@ -14,7 +14,6 @@ func main() {
 	if err != nil {
 		return
 	}
-	//sequencer.Session.Contract.WatchSequencerCreate()
 	startNum := uint64(0)
 	ctx := sequencer.Session.CallOpts.Context
 
