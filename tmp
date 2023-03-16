@@ -43,3 +43,6 @@ _P2P_PORT=20303;ETH1_HTTP=http://127.0.0.1:9545;BLOCK_SIGNER_KEY=459314d204e360f
 
 
 ROLLUP_POLL_INTERVAL_FLAG
+
+
+curl -X POST --data '{"jsonrpc":"2.0","method":"proof_generateProofForTest","params":[],"id":1}'

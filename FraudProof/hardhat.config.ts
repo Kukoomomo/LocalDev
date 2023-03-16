@@ -4,9 +4,9 @@ import "hardhat-abi-exporter";
 import "solidity-coverage";
 import "@nomiclabs/hardhat-ethers"
 import "@openzeppelin/hardhat-upgrades"
-import "./tasks/Sequencer";
+import "./tasks/deploy";
 import "./tasks/api";
-
+import "./tasks/verify";
 
 module.exports = {
   defaultNetwork: 'hardhat',

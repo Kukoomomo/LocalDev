@@ -35,8 +35,8 @@ task("deployToken")
     .setAction(async (taskArgs, hre) => {
         const tokenFactory = await hre.ethers.getContractFactory('BitTokenERC20')
         const token = await tokenFactory.deploy('name', 'symbol')
-        await token.deployed();
-        console.log("export BIT_ERC20_TOKEN=%s", token.address.toLocaleLowerCase());
+        const res = await token.deployed();
+        console.log("export BIT_ERC20_TOKEN=%s \n TX_HASH: %s", token.address.toLocaleLowerCase(),token.deployTransaction.hash);
     });
 
 task("deploy")
