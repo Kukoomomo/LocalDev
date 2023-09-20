@@ -33,7 +33,7 @@ for (var i = 0; i < prvKeys.length; i++) {
 
 task("deployToken")
     .setAction(async (taskArgs, hre) => {
-        const tokenFactory = await hre.ethers.getContractFactory('BitTokenERC20')
+        const tokenFactory = await hre.ethers.getContractFactory('TokenERC20')
         const token = await tokenFactory.deploy('name', 'symbol')
         const res = await token.deployed();
         console.log("export BIT_ERC20_TOKEN=%s \n TX_HASH: %s", token.address.toLocaleLowerCase(),token.deployTransaction.hash);
@@ -41,7 +41,7 @@ task("deployToken")
 
 task("deploy")
   .setAction(async (taskArgs, hre) => {
-    const tokenFactory = await hre.ethers.getContractFactory('BitTokenERC20')
+    const tokenFactory = await hre.ethers.getContractFactory('TokenERC20')
     const token = await tokenFactory.deploy('name', 'symbol')
     await token.deployed();
     console.log("export BIT_ERC20_TOKEN=%s", token.address.toLocaleLowerCase());
@@ -84,7 +84,7 @@ task("updateScheduler")
 task("init")
   // .addParam("token")
   .setAction(async (taskArgs, hre) => {
-    const tokenFactory = await hre.ethers.getContractFactory('BitTokenERC20')
+    const tokenFactory = await hre.ethers.getContractFactory('TokenERC20')
     const token = tokenFactory.attach("0x5FbDB2315678afecb367f032d93F642f64180aa3")
     for (var i = 0; i < wallets.length; i++) {
 
@@ -100,7 +100,7 @@ task("createSequencer")
     const sequencer = sequencerFactory.attach("0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0")
     // const sequencer = sequencerFactory.attach("0x36fCf02Fc651c0b7ef2ECA446Dd2405364F85337")
 
-    const tokenFactory = await hre.ethers.getContractFactory('BitTokenERC20')
+    const tokenFactory = await hre.ethers.getContractFactory('TokenERC20')
     const token = tokenFactory.attach("0x5FbDB2315678afecb367f032d93F642f64180aa3")
     // const token = tokenFactory.attach("0x92aBAD50368175785e4270ca9eFd169c949C4ce1")
 
@@ -130,7 +130,7 @@ task("deposit")
  .setAction(async (taskArgs, hre) => {
     const sequencerFactory = await hre.ethers.getContractFactory('Sequencer')
     const sequencer = sequencerFactory.attach("0x9fe46736679d2d9a65f0992f2272de9f3c7fa6e0")
-    const tokenFactory = await hre.ethers.getContractFactory('BitTokenERC20')
+    const tokenFactory = await hre.ethers.getContractFactory('TokenERC20')
     const token = tokenFactory.attach("0x5FbDB2315678afecb367f032d93F642f64180aa3")
     
     // 0xBe0F340075060F856612d91e17cAe599dE92C745
